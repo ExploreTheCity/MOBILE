@@ -8,7 +8,7 @@ import MenuContainer from "./components/MenuContainer";
 import Header from "./components/Header";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-
+//deneme pull request
 const Homepage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
