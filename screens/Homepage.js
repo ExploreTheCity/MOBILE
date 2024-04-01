@@ -1,29 +1,26 @@
-import React, { useState } from 'react';
-import { useNavigation } from "@react-navigation/native";
+import React from "react";
 import Header from "./components/Header";
-import { View, Text, StyleSheet, ScrollView, Image, TextInput } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import CityCards from './components/CityCards';
-import Footer from './components/Footer';
-
+import {
+  View,
+  ScrollView
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import CityCards from "./components/CityCards";
+import Footer from "./components/Footer";
 
 const Homepage = () => {
-
-
   return (
-
     <SafeAreaView>
-    <ScrollView>
-      
-    <View style={{ margin: 6 }}>
-        <Header />
-      </View>
-      
-      <CityCards />
+      <ScrollView>
+        <View style={{ margin: 6 }}>
+          <Header />
+        </View>
 
-      <Footer />
+        <CityCards />
 
-    </ScrollView></SafeAreaView>
+        <Footer />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 export default Homepage;
