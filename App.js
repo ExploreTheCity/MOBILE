@@ -4,16 +4,16 @@ import Welcome from "./screens/Welcome";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Fav from "./screens/Fav";
-import Profile from './screens/Profile'
+import Profile from "./screens/Profile";
 import Search from "./screens/Search";
 import Homepage from "./screens/Homepage";
-import AuthProvider, { useAuth } from "./screens/AuthContext"
+import AuthProvider, { useAuth } from "./screens/AuthContext";
 import TabNavigation from "./screens/navigations/TabNavgiation";
 
 const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
-  const [user] = useAuth()
+  const [user] = useAuth();
 
   if (!user) {
     return (
@@ -27,26 +27,23 @@ const Navigator = () => {
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Homepage" component={Homepage} />
-      <Stack.Screen name="Fav" component={Fav} />
-      <Stack.Screen name="Search" component={Search} />
-      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Main" component={MainScreens} />
     </Stack.Navigator>
   );
 };
+
+const MainScreens = () => {
+  return <TabNavigation />;
+};
+
 const App = () => {
   return (
     <NavigationContainer>
-      <AuthProvider> 
-      <Navigator> 
-      <TabNavigation/>
-      </Navigator>
-      
+      <AuthProvider>
+        <Navigator />
       </AuthProvider>
     </NavigationContainer>
   );
 };
-
-
 
 export default App;
