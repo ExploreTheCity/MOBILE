@@ -27,13 +27,9 @@ const Navigator = () => {
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Main" component={MainScreens} />
+      <Stack.Screen name="Main" component={TabNavigation} />
     </Stack.Navigator>
   );
-};
-
-const MainScreens = () => {
-  return <TabNavigation />;
 };
 
 const App = () => {
