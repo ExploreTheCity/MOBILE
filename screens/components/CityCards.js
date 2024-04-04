@@ -30,10 +30,10 @@ export default function CityCards() {
 
   const navigation = useNavigation();
 
-  const handleCardPress = () => {
-    navigation.navigate("CityDetail");
+  const handleCardPress = (city) => {
+    navigation.navigate('CityDetail', { cityId: city.id });
   };
-
+  
   return (
     <ScrollView>
       {/* Search Box */}
@@ -56,7 +56,7 @@ export default function CityCards() {
           >
             <Image source={{ uri: city.image }} style={styles.cardImage} />
             <Text style={styles.cardTitle}>{city.name}</Text>
-            <Text style={styles.cardDescription}>{city.description}</Text>
+            <Text style={styles.cardDescription}>{city.shortdesc}</Text>
           </TouchableOpacity>
         ))}
       </View>

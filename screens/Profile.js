@@ -6,16 +6,35 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
+  Alert
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import COLORS from "./components/colors";
+import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "./AuthContext";
 
 const Profile = () => {
   const [user, setUser] = useAuth();
+  const navigation = useNavigation();
 
   const handleLogout = () => {
-    setUser(null);
+    Alert.alert(
+      "Log out",
+      "Are you sure?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        {
+          text: "Yes",
+          onPress: () => {
+            setUser(null);
+            navigation.navigate("Welcome");
+          }
+        }
+      ]
+    );
   };
 
   return (

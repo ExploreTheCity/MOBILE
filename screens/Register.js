@@ -41,20 +41,19 @@ const Register = () => {
         password,
       },
     })
-      .then((res) => {
-        setUser(res.data);
-      })
-      .finally(() => {})
-      .then(() => {
-        setIsLoading(false);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        alert(e.message);
-      });
-  };
+    .then((res) => {
+      setUser(res.data);
+      navigation.navigate("Homepage");
+    })
+    .finally(() => {
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      console.error('Error:', error.response.data.error.message);
+      setError(error.response.data.error.message);
+      setIsLoading(false);
+    });
+};
 
   const navigation = useNavigation();
 
@@ -216,7 +215,7 @@ const Register = () => {
         </View>
       </View>
 
-      <View
+     {/*  <View
         style={{ flexDirection: "row", alignItems: "center", marginTop: 24 }}
       >
         <View
@@ -271,7 +270,7 @@ const Register = () => {
           />
           <Text>Google</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 };

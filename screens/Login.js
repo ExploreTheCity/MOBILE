@@ -42,16 +42,19 @@ const Login = () => {
         password,
       },
     })
-      .then((res) => {
-        setUser(res.data);
-      })
-      .catch((error) => {
-        alert(error.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
+    .then((res) => {
+      setUser(res.data);
+      navigation.navigate("Homepage");
+    })
+    .finally(() => {
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      console.error('Error:', error.response.data.error.message);
+      setError(error.response.data.error.message);
+      setIsLoading(false);
+    });
+};
 
   const handleRegister = () => {
     navigation.navigate("Register");
@@ -168,7 +171,7 @@ const Login = () => {
         </View>
       </View>
 
-      <View
+     {/*  <View
         style={{ flexDirection: "row", alignItems: "center", marginTop: 24 }}
       >
         <View
@@ -223,7 +226,7 @@ const Login = () => {
           />
           <Text>Google</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 };
