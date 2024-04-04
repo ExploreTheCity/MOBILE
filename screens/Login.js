@@ -13,7 +13,6 @@ import {
   TextInput,
   Button,
 } from "react-native";
-/* import { Button } from "@react-native-material/core"; */
 import { useNavigation } from "@react-navigation/native";
 import Logo from "./components/Logo";
 import axios from "axios";

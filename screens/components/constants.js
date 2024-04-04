@@ -8,10 +8,10 @@ export const citiesData = [
     },
     {
       id: 2,
-      name: "AdÄ±yaman",
+      name: "Adıyaman",
       image:
         "https://api.dokay.com.tr/storage/1476/63280f8b1e3bc7.40466361.jpg",
-      description: "Description of AdÄ±yaman",
+      description: "Description of Adıyaman",
     },
     {
       id: 3,
@@ -22,10 +22,10 @@ export const citiesData = [
     },
     {
       id: 4,
-      name: "AÄŸrÄ±",
+      name: "Ağrı",
       image:
         "https://api.dokay.com.tr/storage/1476/63280f8b1e3bc7.40466361.jpg",
-      description: "Description of AÄŸrÄ±",
+      description: "Description of  Ağrı",
     },
     {
       id: 5,
@@ -57,17 +57,17 @@ export const citiesData = [
     },
     {
       id: 9,
-      name: "AydÄ±n",
+      name: "Aydın",
       image:
         "https://api.dokay.com.tr/storage/1476/63280f8b1e3bc7.40466361.jpg",
-      description: "Description of AydÄ±n",
+      description: "Description of Aydın",
     },
     {
       id: 10,
-      name: "BalÄ±kesir",
+      name: "Balıkesir",
       image:
         "https://api.dokay.com.tr/storage/1476/63280f8b1e3bc7.40466361.jpg",
-      description: "Description of BalÄ±kesir",
+      description: "Description of Balıkesir",
     },
     {
       id: 11,
@@ -78,10 +78,10 @@ export const citiesData = [
     },
     {
       id: 12,
-      name: "BingÃ¶l",
+      name: "Bingol",
       image:
         "https://api.dokay.com.tr/storage/1476/63280f8b1e3bc7.40466361.jpg",
-      description: "Description of BingÃ¶l",
+      description: "Description of Bingol",
     },
     {
       id: 13,
