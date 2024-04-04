@@ -9,7 +9,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import COLORS from "./colors";
+import { useNavigation } from "@react-navigation/native";
 import { citiesData } from "./constants";
 
 export default function CityCards() {
@@ -28,7 +28,11 @@ export default function CityCards() {
     setFilteredCities(filtered);
   };
 
-  const handleCardPress = () => {};
+  const navigation = useNavigation();
+
+  const handleCardPress = () => {
+    navigation.navigate("CityDetail");
+  };
 
   return (
     <ScrollView>

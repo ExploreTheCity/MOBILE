@@ -1,9 +1,23 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
-import COLORS from './components/colors';
+import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import COLORS from "./components/colors";
+import { useAuth } from "./AuthContext";
 
 const Profile = () => {
+  const [user, setUser] = useAuth();
+
+  const handleLogout = () => {
+    setUser(null);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -23,7 +37,7 @@ const Profile = () => {
           <FontAwesome name="cog" size={18} color={COLORS.white} />
           <Text style={styles.buttonText}>Settings</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleLogout}>
           <FontAwesome name="sign-out" size={18} color={COLORS.white} />
           <Text style={styles.buttonText}>Logout</Text>
         </TouchableOpacity>
@@ -38,7 +52,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.background,
   },
   header: {
-    alignItems: 'center',
+    alignItems: "center",
     paddingVertical: 20,
   },
   profileImage: {
@@ -49,7 +63,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 5,
   },
   email: {
@@ -58,12 +72,12 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   button: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     backgroundColor: COLORS.primary,
     paddingVertical: 12,
     paddingHorizontal: 24,

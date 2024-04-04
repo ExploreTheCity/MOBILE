@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import Logo from "./components/Logo";
 import COLORS from "./components/colors";
-/* import {  Button } from "@react-native-material/core"; */
 import { useNavigation } from "@react-navigation/native";
 import Checkbox from "expo-checkbox";
 import Ionicons from "@expo/vector-icons/Ionicons";

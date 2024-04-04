@@ -9,6 +9,7 @@ import Search from "./screens/Search";
 import Homepage from "./screens/Homepage";
 import AuthProvider, { useAuth } from "./screens/AuthContext";
 import TabNavigation from "./screens/navigations/TabNavgiation";
+import CityDetail from "./screens/components/CityDetail";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,19 +22,18 @@ const Navigator = () => {
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Main" component={TabNavigation} />
       </Stack.Navigator>
+      
     );
   }
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Main" component={MainScreens} />
+        <Stack.Screen name="Main" component={TabNavigation} />
+        <Stack.Screen name="CityDetail" component={CityDetail} />
     </Stack.Navigator>
   );
-};
-
-const MainScreens = () => {
-  return <TabNavigation />;
 };
 
 const App = () => {
