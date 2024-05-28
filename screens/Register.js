@@ -9,6 +9,7 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import Logo from "./components/Logo";
 import COLORS from "./components/colors";
@@ -41,19 +42,21 @@ const Register = () => {
         password,
       },
     })
-    .then((res) => {
-      setUser(res.data);
-      navigation.navigate("Homepage");
-    })
-    .finally(() => {
-      setIsLoading(false);
-    })
-    .catch((error) => {
-      console.error('Error:', error.response.data.error.message);
-      setError(error.response.data.error.message);
-      setIsLoading(false);
-    });
-};
+      .then((res) => {
+        setUser(res.data);
+        navigation.navigate("Homepage");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setError(error.response.data.error.message);
+        setIsLoading(false);
+        Alert.alert("Error", error.response.data.error.message, [
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ]);
+      });
+  };
 
   const navigation = useNavigation();
 
@@ -215,7 +218,7 @@ const Register = () => {
         </View>
       </View>
 
-     {/*  <View
+      {/*  <View
         style={{ flexDirection: "row", alignItems: "center", marginTop: 24 }}
       >
         <View

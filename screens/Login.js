@@ -12,6 +12,7 @@ import {
   Pressable,
   TextInput,
   Button,
+  Alert
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Logo from "./components/Logo";
@@ -50,9 +51,10 @@ const Login = () => {
       setIsLoading(false);
     })
     .catch((error) => {
-      console.error('Error:', error.response.data.error.message);
-      setError(error.response.data.error.message);
+      console.error("Error:", error.response.data.error.message);
+      setError("Invalid email or password. Please try again.");
       setIsLoading(false);
+      Alert.alert("Login Error", "Invalid email or password. Please try again.");
     });
 };
 
@@ -171,7 +173,7 @@ const Login = () => {
         </View>
       </View>
 
-     {/*  <View
+      {/*  <View
         style={{ flexDirection: "row", alignItems: "center", marginTop: 24 }}
       >
         <View

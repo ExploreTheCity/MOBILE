@@ -13,8 +13,6 @@ import { useNavigation } from "@react-navigation/native";
 import { citiesData } from "./constants";
 
 export default function CityCards() {
- 
-
   const popularCities = citiesData.slice(0, 6); // Adjust the number of popular cities you want to show initially
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -31,9 +29,9 @@ export default function CityCards() {
   const navigation = useNavigation();
 
   const handleCardPress = (city) => {
-    navigation.navigate('CityDetail', { cityId: city.id });
+    navigation.navigate("CityDetail", { cityId: city.id });
   };
-  
+
   return (
     <ScrollView>
       {/* Search Box */}

@@ -20,8 +20,12 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "googleServicesFile":"./google-services.json",
+        "package": "com.etc.explorethecity",
+        "googleMapApiKey":"AIzaSyAb3FNje9uWn6mF18VmpZ3_dtN_sD9FBGI"
       }
+     
     },
     "web": {
       "favicon": "./assets/favicon.png"
