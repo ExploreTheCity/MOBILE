@@ -12,6 +12,7 @@ import {
   Pressable,
   TextInput,
   Button,
+  Alert
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Logo from "./components/Logo";
@@ -42,16 +43,20 @@ const Login = () => {
         password,
       },
     })
-      .then((res) => {
-        setUser(res.data);
-      })
-      .catch((error) => {
-        alert(error.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
+    .then((res) => {
+      setUser(res.data);
+      navigation.navigate("Homepage");
+    })
+    .finally(() => {
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      console.error("Error:", error.response.data.error.message);
+      setError("Invalid email or password. Please try again.");
+      setIsLoading(false);
+      Alert.alert("Login Error", "Invalid email or password. Please try again.");
+    });
+};
 
   const handleRegister = () => {
     navigation.navigate("Register");
@@ -168,7 +173,7 @@ const Login = () => {
         </View>
       </View>
 
-      <View
+      {/*  <View
         style={{ flexDirection: "row", alignItems: "center", marginTop: 24 }}
       >
         <View
@@ -223,7 +228,7 @@ const Login = () => {
           />
           <Text>Google</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 };

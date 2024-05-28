@@ -13,8 +13,6 @@ import { useNavigation } from "@react-navigation/native";
 import { citiesData } from "./constants";
 
 export default function CityCards() {
- 
-
   const popularCities = citiesData.slice(0, 6); // Adjust the number of popular cities you want to show initially
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -30,8 +28,8 @@ export default function CityCards() {
 
   const navigation = useNavigation();
 
-  const handleCardPress = () => {
-    navigation.navigate("CityDetail");
+  const handleCardPress = (city) => {
+    navigation.navigate("CityDetail", { cityId: city.id });
   };
 
   return (
@@ -56,7 +54,7 @@ export default function CityCards() {
           >
             <Image source={{ uri: city.image }} style={styles.cardImage} />
             <Text style={styles.cardTitle}>{city.name}</Text>
-            <Text style={styles.cardDescription}>{city.description}</Text>
+            <Text style={styles.cardDescription}>{city.shortdesc}</Text>
           </TouchableOpacity>
         ))}
       </View>

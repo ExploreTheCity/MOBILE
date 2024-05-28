@@ -10,7 +10,7 @@ const Logo = () => {
         height: 72,
         margin: "0 auto",
         marginTop: "2rem",
-        marginBottom: "2rem",
+        marginBottom: "4rem",
       }}
     />
   );

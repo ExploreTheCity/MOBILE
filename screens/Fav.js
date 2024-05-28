@@ -1,65 +1,64 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import COLORS from './components/colors';
-import Header from './components/Header';
-import MenuContainer from './components/MenuContainer';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import React, { useContext } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { FavoritesContext } from "./components/FavoritesContext";
+import { citiesData } from "./components/constants";
+import Header from "./components/Header";
 
-const Fav = () => {
-  const cardData = [
-    { id: 1, title: 'Food', description: 'Where to eat in which city?', image: 'https://api.dokay.com.tr/storage/1476/63280f8b1e3bc7.40466361.jpg' },
-    { id: 2, title: 'Transportation', description: 'The best transportation vehicle for ... city', image: 'https://api.dokay.com.tr/storage/1476/63280f8b1e3bc7.40466361.jpg' },
-    { id: 3, title: 'Travel Hacks', description: 'For those who are just starting to travel... ', image: 'https://api.dokay.com.tr/storage/1476/63280f8b1e3bc7.40466361.jpg' },
-  ];
+const Fav = ({ navigation }) => {
+  const { favorites, removeFavorite } = useContext(FavoritesContext);
+
+  const navigateToCityDetail = (cityId) => {
+    navigation.navigate("CityDetail", { cityId });
+  };
+
+  const renderFavoriteItem = ({ item }) => {
+    const city = citiesData.find((city) => city.id === item.id);
+
+    return (
+      <View style={styles.favoriteItem}>
+        <TouchableOpacity onPress={() => navigateToCityDetail(city.id)}>
+          <Image source={{ uri: city.image }} style={styles.cityImage} />
+        </TouchableOpacity>
+        <View style={styles.favoriteDetails}>
+          <Ionicons name="star" size={12} color="orange" />
+          <Text style={styles.cityName}>{city.name}</Text>
+          <Text style={styles.cityShortDesc}>{city.shortdesc}</Text>
+        </View>
+        <TouchableOpacity
+          onPress={() => removeFavorite(city.id)}
+          style={styles.removeButton}
+        >
+          <Ionicons name="close-circle-outline" size={24} color="red" />
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header />
-      <View style={styles.searchContainer}>
-        <GooglePlacesAutocomplete
-          GooglePlacesDetailsQuery={{ fields: 'geometry' }}
-          placeholder="Explore"
-          fetchDetails={true}
-          onPress={(data, details = null) => {
-            console.log(data, details);
-          }}
-          query={{
-            key: 'AIzaSyC-PZ-1tHmw9-s2iJeL68HQ5wsA1JVKTUo',
-            language: 'en',
-          }}
-          styles={{
-            container: {
-              flex: 1,
-              width: '100%',
-              padding: 16,
-              marginTop: 12,
-              marginBottom:32,
-              opacity: 0.8,
-            },
-          }}
+      {/*       <Header /> */}
+      <Text style={styles.title}>
+        Favorite Cities <Ionicons name="heart" size={14} color="red" />{" "}
+      </Text>
+      {favorites.length === 0 ? (
+        <Text style={styles.noFavoritesText}>No favorites found.</Text>
+      ) : (
+        <FlatList
+          data={favorites}
+          renderItem={renderFavoriteItem}
+          keyExtractor={(item) => item.id.toString()}
+          contentContainerStyle={styles.listContainer}
         />
-        <MenuContainer />
-      </View>
-
-      <View style={styles.tipsContainer}>
-        <Text style={styles.tipsTitle}>Top Tips</Text>
-        <TouchableOpacity style={styles.exploreMore}>
-          <Text style={styles.exploreText}>Explore more</Text>
-          <Ionicons name="arrow-forward-circle-outline" color={COLORS.black} size={18} />
-        </TouchableOpacity>
-      </View>
-
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {cardData.map(card => (
-          <TouchableOpacity key={card.id} style={styles.card}>
-            <Image source={{ uri: card.image }} style={styles.cardImage} />
-            <Text style={styles.cardTitle}>{card.title}</Text>
-            <Text style={styles.cardDescription}>{card.description}</Text>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+      )}
     </SafeAreaView>
   );
 };
@@ -67,54 +66,57 @@ const Fav = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 6,
-    backgroundColor: COLORS.background,
+    margin: 6,
   },
-  searchContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  tipsContainer: {
-    alignItems: 'stretch',
-    justifyContent: 'center',
-    padding: 16,
-  },
-  tipsTitle: {
+  title: {
     fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
+    fontWeight: "bold",
+    marginTop: 16,
+    marginBottom: 16,
+    marginLeft: 12,
+    color: "#333",
   },
-  exploreMore: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  noFavoritesText: {
+    fontSize: 18,
+    color: "#666",
+    textAlign: "center",
+    marginTop: 20,
   },
-  exploreText: {
-    fontSize: 16,
-    paddingHorizontal: 4,
+  listContainer: {
+    paddingBottom: 20,
+    margin: 12,
   },
-  card: {
-    width: 200,
-    marginRight: 20,
+  favoriteItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd",
+    paddingBottom: 16,
+  },
+  cityImage: {
+    width: 80,
+    height: 80,
     borderRadius: 10,
-    backgroundColor: COLORS.white,
-    elevation: 5,
-    overflow: 'hidden',
-    padding: 12,
+    marginRight: 16,
   },
-  cardImage: {
-    width: '100%',
-    height: 120,
-    borderRadius: 10,
-    marginBottom: 8,
+  favoriteDetails: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
   },
-  cardTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 4,
+  cityName: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#333",
   },
-  cardDescription: {
+  cityShortDesc: {
     fontSize: 14,
-    color: COLORS.gray,
+    color: "#666",
+  },
+  removeButton: {
+    padding: 8,
   },
 });
 

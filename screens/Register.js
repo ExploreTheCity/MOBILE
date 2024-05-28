@@ -9,6 +9,7 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import Logo from "./components/Logo";
 import COLORS from "./components/colors";
@@ -43,16 +44,17 @@ const Register = () => {
     })
       .then((res) => {
         setUser(res.data);
-      })
-      .finally(() => {})
-      .then(() => {
-        setIsLoading(false);
+        navigation.navigate("Homepage");
       })
       .finally(() => {
         setIsLoading(false);
       })
-      .catch((e) => {
-        alert(e.message);
+      .catch((error) => {
+        setError(error.response.data.error.message);
+        setIsLoading(false);
+        Alert.alert("Error", error.response.data.error.message, [
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ]);
       });
   };
 
@@ -216,7 +218,7 @@ const Register = () => {
         </View>
       </View>
 
-      <View
+      {/*  <View
         style={{ flexDirection: "row", alignItems: "center", marginTop: 24 }}
       >
         <View
@@ -271,7 +273,7 @@ const Register = () => {
           />
           <Text>Google</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 };

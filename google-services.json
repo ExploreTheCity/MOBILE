@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "775306455958",
+    "firebase_url": "https://slaapp-af42e-default-rtdb.firebaseio.com",
+    "project_id": "slaapp-af42e",
+    "storage_bucket": "slaapp-af42e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775306455958:android:82f78ea3735662a55b4bb7",
+        "android_client_info": {
+          "package_name": "com.etc.explorethecity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775306455958-4gtrf5nsf05bfeg0uv4vthjvmlsppv14.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.etc.explorethecity",
+            "certificate_hash": "0d2a4d23c2a30e1262a1a9de48f2139f03c423c3"
+          }
+        },
+        {
+          "client_id": "775306455958-cvejdb5d0fjgm8cpv5ibgv0o17uk6dlm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChlEU_Z0p_S26Hp_VG1-yhk3r0BeeRBRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "775306455958-cvejdb5d0fjgm8cpv5ibgv0o17uk6dlm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "775306455958-7s4dpumccjtgoiorree4ul6husf69t6u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.etc.explorethecity"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
